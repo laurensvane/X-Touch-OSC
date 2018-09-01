@@ -1,0 +1,463 @@
+{	
+	"general": {
+
+		"server-ip": "127.0.0.1",
+		"server-port": "4600",
+
+		"listen-port": "4601"
+
+	},
+	"panels": [
+		{
+		"name": "panel1",
+
+		"connection": "X-TOUCH COMPACT",
+
+		"faders": [
+			{
+				"midi": 70,
+				"osc": "/fader/1"
+			},
+			{
+				"midi": 71,
+				"osc": "/fader/2"
+			},
+			{
+				"midi": 72,
+				"osc": "/fader/3"
+			},
+			{
+				"midi": 73,
+				"osc": "/fader/4"
+			},
+			{
+				"midi": 74,
+				"osc": "/fader/5"
+			},
+			{
+				"midi": 75,
+				"osc": "/fader/6"
+			},
+			{
+				"midi": 76,
+				"osc": "/fader/7"
+			},
+			{
+				"midi": 77,
+				"osc": "/fader/8"
+			},
+			{
+				"midi": 78,
+				"osc": "/fader/9"
+			}
+		],
+
+		"faders_touch": [
+			{
+				"midi": 110,
+				"osc": "/fader_touch/1"
+			},
+			{
+				"midi": 111,
+				"osc": "/fader_touch/2"
+			},
+			{
+				"midi": 112,
+				"osc": "/fader_touch/3"
+			},
+			{
+				"midi": 113,
+				"osc": "/fader_touch/4"
+			},
+			{
+				"midi": 114,
+				"osc": "/fader_touch/5"
+			},
+			{
+				"midi": 115,
+				"osc": "/fader_touch/6"
+			},
+			{
+				"midi": 116,
+				"osc": "/fader_touch/7"
+			},
+			{
+				"midi": 117,
+				"osc": "/fader_touch/8"
+			},
+			{
+				"midi": 118,
+				"osc": "/fader_touch/9"
+			}
+		],
+
+		"encoders": [
+			{
+				"midi": 80,
+				"osc": "/encoder/1"
+			},
+			{
+				"midi": 81,
+				"osc": "/encoder/2"
+			},
+			{
+				"midi": 82,
+				"osc": "/encoder/3"
+			},
+			{
+				"midi": 83,
+				"osc": "/encoder/4"
+			},
+			{
+				"midi": 84,
+				"osc": "/encoder/5"
+			},
+			{
+				"midi": 85,
+				"osc": "/encoder/6"
+			},
+			{
+				"midi": 86,
+				"osc": "/encoder/7"
+			},
+			{
+				"midi": 87,
+				"osc": "/encoder/8"
+			},
+			{
+				"midi": 100,
+				"osc": "/encoder/9"
+			},
+			{
+				"midi": 101,
+				"osc": "/encoder/10"
+			},
+			{
+				"midi": 102,
+				"osc": "/encoder/11"
+			},
+			{
+				"midi": 103,
+				"osc": "/encoder/12"
+			},
+			{
+				"midi": 104,
+				"osc": "/encoder/13"
+			},
+			{
+				"midi": 105,
+				"osc": "/encoder/14"
+			},
+			{
+				"midi": 106,
+				"osc": "/encoder/15"
+			},
+			{
+				"midi": 107,
+				"osc": "/encoder/16"
+			}
+		],
+
+		"encoders_press": [
+			{
+				"midi": 0,
+				"osc": "/encoder_press/1"
+			},
+			{
+				"midi": 1,
+				"osc": "/encoder_press/2"
+			},
+			{
+				"midi": 2,
+				"osc": "/encoder_press/3"
+			},
+			{
+				"midi": 3,
+				"osc": "/encoder_press/4"
+			},
+			{
+				"midi": 4,
+				"osc": "/encoder_press/5"
+			},
+			{
+				"midi": 5,
+				"osc": "/encoder_press/6"
+			},
+			{
+				"midi": 6,
+				"osc": "/encoder_press/7"
+			},
+			{
+				"midi": 7,
+				"osc": "/encoder_press/8"
+			},
+			{
+				"midi": 41,
+				"osc": "/encoder_press/9"
+			},
+			{
+				"midi": 42,
+				"osc": "/encoder_press/10"
+			},
+			{
+				"midi": 43,
+				"osc": "/encoder_press/11"
+			},
+			{
+				"midi": 44,
+				"osc": "/encoder_press/12"
+			},
+			{
+				"midi": 45,
+				"osc": "/encoder_press/13"
+			},
+			{
+				"midi": 46,
+				"osc": "/encoder_press/14"
+			},
+			{
+				"midi": 47,
+				"osc": "/encoder_press/15"
+			},
+			{
+				"midi": 48,
+				"osc": "/encoder_press/16"
+			}
+		],
+
+		"buttons": [
+			{
+				"midi": 8,
+				"osc": "/button1/1"
+			},
+			{
+				"midi": 9,
+				"osc": "/button1/2"
+			},
+			{
+				"midi": 10,
+				"osc": "/button1/3"
+			},
+			{
+				"midi": 11,
+				"osc": "/button1/4"
+			},
+			{
+				"midi": 12,
+				"osc": "/button1/5"
+						},
+			{
+				"midi": 13,
+				"osc": "/button1/6"
+			},
+			{
+				"midi": 14,
+				"osc": "/button1/7"
+			},
+			{
+				"midi": 15,
+				"osc": "/button1/8"
+			},
+
+			{
+				"midi": 16,
+				"osc": "/button2/1"
+			},
+			{
+				"midi": 17,
+				"osc": "/button2/2"
+			},
+			{
+				"midi": 18,
+				"osc": "/button2/3"
+			},
+			{
+				"midi": 19,
+				"osc": "/button2/4"
+			},
+			{
+				"midi": 20,
+				"osc": "/button2/5"
+			},
+			{
+				"midi": 21,
+				"osc": "/button2/6"
+			},
+			{
+				"midi": 22,
+				"osc": "/button2/7"
+			},
+			{
+				"midi": 23,
+				"osc": "/button2/8"
+			},
+
+			{
+				"midi": 24,
+				"osc": "/button3/1"
+			},
+			{
+				"midi": 25,
+				"osc": "/button3/2"
+			},
+			{
+				"midi": 26,
+				"osc": "/button3/3"
+			},
+			{
+				"midi": 27,
+				"osc": "/button3/4"
+			},
+			{
+				"midi": 28,
+				"osc": "/button3/5"
+						},
+			{
+				"midi": 29,
+				"osc": "/button3/6"
+			},
+			{
+				"midi": 30,
+				"osc": "/button3/7"
+			},
+			{
+				"midi": 31,
+				"osc": "/button3/8"
+			},
+
+			{
+				"midi": 32,
+				"osc": "/button4/1"
+			},
+			{
+				"midi": 33,
+				"osc": "/button4/2"
+			},
+			{
+				"midi": 34,
+				"osc": "/button4/3"
+			},
+			{
+				"midi": 35,
+				"osc": "/button4/4"
+			},
+			{
+				"midi": 36,
+				"osc": "/button4/5"
+			},
+			{
+				"midi": 37,
+				"osc": "/button4/6"
+			},
+			{
+				"midi": 38,
+				"osc": "/button4/7"
+			},
+			{
+				"midi": 39,
+				"osc": "/button4/8"
+			},
+			{
+				"midi": 40,
+				"osc": "/button4/9"
+			},
+			{
+				"midi": 49,
+				"osc": "/button/rewind"
+			},
+			{
+				"midi": 50,
+				"osc": "/button/forward"
+			},
+			{
+				"midi": 51,
+				"osc": "/button/loop"
+			},
+			{
+				"midi": 52,
+				"osc": "/button/record"
+			},
+			{
+				"midi": 53,
+				"osc": "/button/stop"
+			},
+			{
+				"midi": 54,
+				"osc": "/button/play"
+			}
+		],
+
+		"meters": [
+			{
+				"midi": 90,
+				"osc": "/meter/1"
+			},
+			{
+				"midi": 91,
+				"osc": "/meter/2"
+			},
+			{
+				"midi": 92,
+				"osc": "/meter/3"
+			},
+			{
+				"midi": 93,
+				"osc": "/meter/4"
+			},
+			{
+				"midi": 94,
+				"osc": "/meter/5"
+			},
+			{
+				"midi": 95,
+				"osc": "/meter/6"
+			},
+			{
+				"midi": 96,
+				"osc": "/meter/7"
+			},
+			{
+				"midi": 97,
+				"osc": "/meter/8"
+			}
+		],
+
+		"displays": [
+			{
+				"channel": 1,
+				"osc": "/display/1"
+			},
+			{
+				"channel": 2,
+				"osc": "/display/2"
+			},
+			{
+				"channel": 3,
+				"osc": "/display/3"
+			},
+			{
+				"channel": 4,
+				"osc": "/display/4"
+			},
+			{
+				"channel": 5,
+				"osc": "/display/5"
+			},
+			{
+				"channel": 6,
+				"osc": "/display/6"
+			},
+			{
+				"channel": 7,
+				"osc": "/display/7"
+			},
+			{
+				"channel": 8,
+				"osc": "/display/8"
+			}
+		]
+		
+		}
+	]
+
+}
