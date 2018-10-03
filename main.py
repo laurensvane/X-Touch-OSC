@@ -37,7 +37,7 @@ class MidiCommunication(QtCore.QThread):
 		for display in self.cfg['displays']:
 			self.displayTopState.append("")
 			self.displayBottomState.append("")
-			self.displayColorState.append(0)
+			self.displayColorState.append(6)
 
 		self.midiInputHandler = pygame.midi.Input(self.getMidiDeviceByName(2, self.cfg['connection']))
 		self.midiOutputHandler = pygame.midi.Output(self.getMidiDeviceByName(3, self.cfg['connection']))
@@ -130,7 +130,7 @@ class MidiCommunication(QtCore.QThread):
 		sysex_message = sysex_start + sysex_channel + sysex_color + sysex_data1 + sysex_data2 + sysex_end
 		#sysex_message = b'\xF0\x00\x20\x32\x15\x4C\x03\x16\x68\x65\x6C\x6C\x6F\x00\x00\x77\x6F\x72\x6C\x64\x00\x00\xF7'
 		#sysex_message = '\xF0\x7D\x10\x11\x12\x13\xF7'
-		print(sysex_message)
+		#print(sysex_message)
 		self.sendMidiSysEx(sysex_message)
 
 	def sendMidiNote(self, note, value):
@@ -152,16 +152,17 @@ class OscHandler(QtCore.QThread):
 		self.server = osc_server.ThreadingOSCUDPServer((self.getip(), int(data.cfg['general']['listen-port'])), self.dispatcher)
 
 	def run(self):
-		print("Start OSC server")
+		#print("Start OSC server")
 		self.server.serve_forever()
 
 	def stop(self):
 		self.running = False
-		print("Stopping OSC server")
+		#print("Stopping OSC server")
 		self.server.shutdown()
 		self.server = None
 
 	def send_osc(self, args, value):
+		print(args+" = "+str(value))
 		self.client.send_message(args, value)
 
 	def receive_osc(self, args, value):
@@ -187,8 +188,9 @@ class OscHandler(QtCore.QThread):
 					self.data.midiHandlers[self.data.cfg['panels'].index(panel)].sendMidiNote(button['midi'], int(value*127))
 
 			for meter in panel['meters']:
-				if encoder['osc'] == args:
-					self.data.midiHandlers[self.data.cfg['panels'].index(panel)].sendMidiCC(encoder['midi'], self.translate_meterValue(value))
+				if meter['osc'] == args:
+					#print("meter" + str(value))
+					self.data.midiHandlers[self.data.cfg['panels'].index(panel)].sendMidiCC(meter['midi'], self.translate_meterValue(value))
 			
 			for display in panel['displays']:
 				if display['osc'] in args:
@@ -197,7 +199,7 @@ class OscHandler(QtCore.QThread):
 					if args.split("/")[-1] == "bottom":
 						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayBottom(display['channel'], str(value))
 					if args.split("/")[-1] == "color":
-						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayColor(display['channel'], int(value*127))
+						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayColor(display['channel'], int(value))
 					
 	def getip(self):
 		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -246,7 +248,7 @@ class DataHandler():
 		pygame.init()
 		pygame.midi.init()
 		for i in range(0, len(self.cfg['panels'])):
-			print("panel" + str(i))
+			#print("panel" + str(i))
 			new_midiHandler = MidiCommunication(self, self.cfg['panels'][i])
 			new_midiHandler.start()
 			self.midiHandlers.append(new_midiHandler)
@@ -255,7 +257,7 @@ class DataHandler():
 		self.oscHandler.start()
 
 	def exit(self):
-		print("stoppen programma")
+		#print("stoppen programma")
 
 		for midiHandler in self.midiHandlers:
 			midiHandler.stop()
