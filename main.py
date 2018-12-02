@@ -24,15 +24,17 @@ import pygame.midi
 
 class MidiCommunication(QtCore.QThread):
 
-	displayTopState = []
-	displayBottomState = []
-	displayColorState = []
+
 
 
 	def __init__(self,data,cfg):
 		super(MidiCommunication, self).__init__()
 		self.data = data
 		self.cfg = cfg
+		self.displayTopState = []
+		self.displayBottomState = []
+		self.displayColorState = []
+
 
 		for display in self.cfg['displays']:
 			self.displayTopState.append("")
@@ -44,8 +46,9 @@ class MidiCommunication(QtCore.QThread):
 		#self.data.mainWindow.statusBar().showMessage("Midi Connected")
 
 	def getMidiDeviceByName(self, type, name):
-		result = 0
+		result = -1
 		for x in range(0, pygame.midi.get_count()):
+			print(pygame.midi.get_device_info(x))
 			if(pygame.midi.get_device_info(x)[type]):
 				if(name in str(pygame.midi.get_device_info(x)[1])):
 					result = x
@@ -87,6 +90,10 @@ class MidiCommunication(QtCore.QThread):
 
 		for encoder in self.cfg['encoders']:
 			if encoder['midi'] == channel:
+				if data[0][2]==65:
+					value = 1.0
+				else:
+					value = 0.0
 				self.data.oscHandler.send_osc(encoder['osc'], value)
 
 		for encoder in self.cfg['encoders_press']:
@@ -110,8 +117,8 @@ class MidiCommunication(QtCore.QThread):
 		self.sendDisplay(channel)
 
 	def sendDisplay(self, channel):
-		row1 = self.displayTopState[channel-1]
-		row2 = self.displayBottomState[channel-1]
+		row1 = self.displayTopState[channel-1][:7]
+		row2 = self.displayBottomState[channel-1][:7]
 		color = self.displayColorState[channel-1]
 		for i in range(len(row1),7):
 			row1 = row1+'\x00'
@@ -166,6 +173,7 @@ class OscHandler(QtCore.QThread):
 		self.client.send_message(args, value)
 
 	def receive_osc(self, args, value):
+
 		for panel in self.data.cfg['panels']:
 			for fader in panel['faders']:
 				if fader['osc'] == args:
@@ -193,12 +201,11 @@ class OscHandler(QtCore.QThread):
 					self.data.midiHandlers[self.data.cfg['panels'].index(panel)].sendMidiCC(meter['midi'], self.translate_meterValue(value))
 			
 			for display in panel['displays']:
-				if display['osc'] in args:
-					if args.split("/")[-1] == "top":
+				if display['osc']+"/top" == args:
 						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayTop(display['channel'], str(value))
-					if args.split("/")[-1] == "bottom":
+				if display['osc']+"/bottom" == args:
 						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayBottom(display['channel'], str(value))
-					if args.split("/")[-1] == "color":
+				if display['osc']+"/color" == args:
 						self.data.midiHandlers[self.data.cfg['panels'].index(panel)].setDisplayColor(display['channel'], int(value))
 					
 	def getip(self):
@@ -255,6 +262,7 @@ class DataHandler():
 
 		self.oscHandler = OscHandler(self)
 		self.oscHandler.start()
+		self.oscHandler.send_osc("/startup", 1.0)
 
 	def exit(self):
 		#print("stoppen programma")
